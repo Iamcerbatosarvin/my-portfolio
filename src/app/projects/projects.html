@@ -1,86 +1,119 @@
-<div class="max-w-6xl mx-auto">
-  <header class="text-center mb-4 min-h-[11rem] flex flex-col justify-center">
-    <h1 class="text-4xl font-bold text-white mb-4">My <span class="text-transparent bg-clip-text bg-linear-to-r from-green-400 to-blue-400">Projects</span></h1>
-    <p class="text-xl text-slate-300">Showcasing my work and development projects</p>
+<div class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-8 md:pt-8">
+  <header class="text-center mb-4 min-h-44 flex flex-col justify-center">
+    <h1 class="text-4xl font-bold text-white mb-4">
+      My
+      <span class="text-transparent bg-clip-text bg-linear-to-r from-green-400 to-blue-400">
+        Projects
+      </span>
+    </h1>
+
+    <p class="text-xl text-slate-300">
+      Showcasing my work and development projects
+    </p>
   </header>
 
+  <!-- PROJECT GRID -->
   <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-    <div class="bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-700">
-      <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
-        <span class="text-white text-4xl font-bold">C#</span>
+
+    <div
+      *ngFor="let project of projects; trackBy: trackProject"
+      class="group bg-slate-800 p-6 rounded-lg shadow-md transition-transform duration-300 border border-slate-700 cursor-pointer transform hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
+      (click)="openProject(project)"
+    >
+
+      <!-- CARD IMAGE -->
+      <div class="w-full h-48 bg-linear-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
+        <span class="text-white text-4xl font-bold">
+          {{ project.subtitle }}
+        </span>
       </div>
-      <h3 class="text-xl font-semibold mb-3 text-white">Makati City Government Systems</h3>
-      <p class="text-slate-300 mb-4">Developed and enhanced applications for Makati City Government systems using C# and .NET Framework, improving system functionality and performance.</p>
+
+      <!-- TITLE -->
+      <h3 class="text-xl font-semibold mb-3 text-white text-center">
+          {{ project.name }}
+      </h3>
+
+      <!-- DESCRIPTION -->
+      <p class="text-slate-300 mb-4">
+        {{ project.description }}
+      </p>
+
+      <!-- TAGS -->
       <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">C#</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">.NET</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Oracle</span>
+        <span
+          *ngFor="let tag of project.tags"
+          class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+        >
+          {{ tag }}
+        </span>
       </div>
+
+    </div>
+  </div>
+
+  <!-- PROJECT MODAL -->
+  <div
+    *ngIf="selectedProject()"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/90 p-4"
+  >
+
+    <div class="w-full max-w-3xl rounded-3xl border border-slate-700 bg-slate-900 p-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+
+      <!-- HEADER -->
+      <div class="flex items-start justify-between gap-4 mb-6">
+
+        <div>
+          <p class="text-sm uppercase tracking-[0.3em] text-green-400 font-semibold mb-2">
+            Project Details
+          </p>
+
+          <h2 class="text-3xl font-bold text-white">
+            {{ selectedProject()?.name }}
+          </h2>
+
+          <p class="text-slate-400 mt-2">
+            {{ selectedProject()?.highlight }}
+          </p>
+        </div>
+
+        <!-- CLOSE BUTTON -->
+        <button
+          type="button"
+          (click)="closeProject()"
+          class="text-slate-300 hover:text-white bg-slate-800 px-3 py-2 rounded-full transition-colors duration-200"
+        >
+          Close
+        </button>
+
+      </div>
+
+      <!-- DESCRIPTION -->
+      <p class="text-slate-300 leading-7 mb-6">
+        {{ selectedProject()?.description }}
+      </p>
+
+      <!-- DETAILS -->
+      <div class="space-y-3">
+        <div *ngFor="let detail of selectedProject()?.details">
+          <p class="text-slate-300">
+            • {{ detail }}
+          </p>
+        </div>
+      </div>
+
+      <!-- TAGS -->
+      <div class="mt-6 flex flex-wrap gap-2">
+
+        <span
+          *ngFor="let tag of selectedProject()?.tags"
+          class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+        >
+          {{ tag }}
+        </span>
+
+      </div>
+
     </div>
 
-    <div class="bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-700">
-      <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
-        <span class="text-white text-4xl font-bold">DELPHI</span>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-white">Legacy Revenue Systems</h3>
-      <p class="text-slate-300 mb-4">Maintained and supported legacy revenue systems built with Delphi and Pascal, ensuring system stability and continuous operations.</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Pascal</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Delphi</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">PostgreSQL</span>
-      </div>
-    </div>
-
-    <div class="bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-700">
-      <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
-        <span class="text-white text-4xl font-bold">AOI</span>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-white">Inspection Systems Programming</h3>
-      <p class="text-slate-300 mb-4">Programmed and debugged AOI and SPI inspection systems to ensure accurate quality control in production lines.</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Automation</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Quality Control</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Debugging</span>
-      </div>
-    </div>
-
-    <div class="bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-700">
-      <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
-        <span class="text-white text-4xl font-bold">3D</span>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-white">Production Machine Prototyping</h3>
-      <p class="text-slate-300 mb-4">Designed and prototyped production machines using SketchUp, contributing to faster process improvements.</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">SketchUp</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Prototyping</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">3D Design</span>
-      </div>
-    </div>
-
-    <div class="bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-700">
-      <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
-        <span class="text-white text-4xl font-bold">WEB</span>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-white">Portfolio Website</h3>
-      <p class="text-slate-300 mb-4">Built a modern portfolio website using Angular and Tailwind CSS with responsive design and interactive features.</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Angular</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Tailwind CSS</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">TypeScript</span>
-      </div>
-    </div>
-
-    <div class="bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-700">
-      <div class="w-full h-48 bg-gradient-to-br from-green-400 to-green-600 rounded-lg mb-4 flex items-center justify-center">
-        <span class="text-white text-4xl font-bold">DB</span>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-white">Database Management Systems</h3>
-      <p class="text-slate-300 mb-4">Worked with Oracle and PostgreSQL databases for application development and system maintenance.</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Oracle</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">PostgreSQL</span>
-        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">SQL</span>
-      </div>
-    </div>
   </div>
 </div>
