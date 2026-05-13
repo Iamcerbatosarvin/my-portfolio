@@ -1,7 +1,55 @@
-<div class="flex h-screen bg-slate-900">
+<div class="flex flex-col md:flex-row h-screen bg-slate-900">
+  <!-- Mobile Top Navigation -->
+  <nav class="block md:hidden fixed inset-x-0 top-0 z-50 bg-slate-800 shadow-2xl border-b border-slate-700 px-4 py-3">
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-bold text-green-400">Portfolio</h1>
+      <button (click)="toggleSidebar()" class="p-2 hover:bg-green-600 rounded-lg transition-colors duration-200" title="Toggle sidebar">
+        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Horizontal Nav Items for Mobile -->
+    <ul class="flex space-x-4 mt-3 overflow-x-auto">
+      <li>
+        <a routerLink="/home" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-2 px-3 py-2 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+          </svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/profile" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-2 px-3 py-2 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/projects" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-2 px-3 py-2 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"></path>
+          </svg>
+          <span>Projects</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/contact" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-2 px-3 py-2 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+          </svg>
+          <span>Contact</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
   <!-- Sidebar -->
-  <nav [class]="isCollapsed() ? 'w-24' : 'w-64'" class="bg-slate-800 shadow-2xl border-r border-slate-700 transition-all duration-300">
-    <div class="p-4 flex items-center justify-between">
+  <nav [class]="isCollapsed() ? 'w-24' : 'w-64'" class="hidden md:flex md:flex-col bg-slate-800 shadow-2xl border-r border-slate-700 transition-all duration-300 shrink-0">
+    <div class="p-4 flex items-center justify-between w-full">
       <div class="flex items-center gap-3">
         <button (click)="toggleSidebar()" class="p-2 hover:bg-green-600 rounded-lg transition-colors duration-200" title="Toggle sidebar">
           <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -14,7 +62,7 @@
     <ul class="space-y-2 px-3 mt-4">
       <li>
         <a routerLink="/home" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-3 px-3 py-3 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 border border-transparent hover:border-green-500">
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
           </svg>
           <span [class]="isCollapsed() ? 'hidden' : 'block'" class="whitespace-nowrap">Home</span>
@@ -22,7 +70,7 @@
       </li>
       <li>
         <a routerLink="/profile" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-3 px-3 py-3 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 border border-transparent hover:border-green-500">
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
           </svg>
           <span [class]="isCollapsed() ? 'hidden' : 'block'" class="whitespace-nowrap">Profile</span>
@@ -30,7 +78,7 @@
       </li>
       <li>
         <a routerLink="/projects" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-3 px-3 py-3 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 border border-transparent hover:border-green-500">
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"></path>
           </svg>
           <span [class]="isCollapsed() ? 'hidden' : 'block'" class="whitespace-nowrap">Projects</span>
@@ -38,7 +86,7 @@
       </li>
       <li>
         <a routerLink="/contact" routerLinkActive="bg-green-600 text-white" class="flex items-center gap-3 px-3 py-3 text-slate-300 hover:bg-green-600 hover:text-white rounded-md transition-all duration-200 border border-transparent hover:border-green-500">
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
           </svg>
@@ -49,7 +97,7 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="flex-1 p-8 overflow-auto bg-slate-900">
+  <main class="flex-1 pt-24 md:pt-8 p-8 overflow-auto bg-slate-900">
     <router-outlet></router-outlet>
   </main>
 </div>
