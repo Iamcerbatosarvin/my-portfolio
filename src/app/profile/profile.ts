@@ -8,7 +8,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './profile.css',
 })
 export class Profile {
-  photo = 'assets/profile-photo.svg';
+  photo = '/profile-pic.png';
   summary = `Junior Software Developer with experience in application maintenance, system enhancement, and legacy system support. Proficient in C#, Pascal, and .NET with hands-on experience using Visual Studio, GitHub, Oracle, and PostgreSQL. Skilled in troubleshooting, debugging, and improving system functionality. Passionate about continuous learning and building efficient software solutions.`;
 
   skills = [
